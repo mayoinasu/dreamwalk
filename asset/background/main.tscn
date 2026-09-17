@@ -1,5 +1,6 @@
-[gd_scene load_steps=14 format=4 uid="uid://84wfjw6xd6no"]
+[gd_scene load_steps=19 format=4 uid="uid://84wfjw6xd6no"]
 
+[ext_resource type="Script" uid="uid://dnsi10sn86212" path="res://asset/background/main.gd" id="1_4q6r7"]
 [ext_resource type="Texture2D" uid="uid://p3h6rilx77ph" path="res://asset/background/1.png" id="1_grhrh"]
 [ext_resource type="Texture2D" uid="uid://8tfiunl1qvp7" path="res://asset/background/2.png" id="2_3ytvc"]
 [ext_resource type="Texture2D" uid="uid://dod4p4irkx1jn" path="res://asset/background/3.png" id="3_3t1ye"]
@@ -11,8 +12,17 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k66j8"]
 size = Vector2(126.75, 63.75)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ccw4f"]
+size = Vector2(156, 55.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t01cw"]
+size = Vector2(3458.25, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hmwdi"]
+size = Vector2(223.25, 59.5)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3t1ye"]
-size = Vector2(1570.5, 45)
+size = Vector2(2115, 45)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4q6r7"]
 size = Vector2(447, 20)
@@ -26,8 +36,12 @@ size = Vector2(668, 34)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qeyaq"]
 size = Vector2(2119, 56)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y7bc4"]
+size = Vector2(97, 173)
+
 [node name="Node2D" type="Node2D"]
 texture_filter = 1
+script = ExtResource("1_4q6r7")
 
 [node name="background" type="Node2D" parent="."]
 z_index = -400
@@ -88,16 +102,34 @@ texture = ExtResource("4_4q6r7")
 position = Vector2(1689.5, 177)
 shape = SubResource("RectangleShape2D_k66j8")
 
+[node name="ending" type="Area2D" parent="background"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="background/ending"]
+position = Vector2(1071, 233)
+shape = SubResource("RectangleShape2D_ccw4f")
+
+[node name="death zone" type="Area2D" parent="background"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="background/death zone"]
+position = Vector2(1885.375, 301.5)
+shape = SubResource("RectangleShape2D_t01cw")
+
+[node name="finished zone" type="Area2D" parent="background"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="background/finished zone"]
+position = Vector2(3195.375, 297)
+shape = SubResource("RectangleShape2D_hmwdi")
+
 [node name="map" type="Node2D" parent="."]
 
 [node name="TileMapLayer" parent="map" instance=ExtResource("5_3ytvc")]
 scale = Vector2(7, 7)
-tile_map_data = PackedByteArray("AAAAAAQAAAAAAAMAAAABAAQAAAABAAMAAAACAAQAAAAAAAMAAAADAAQAAAAAAAMAAAAEAAQAAAABAAMAAAAFAAQAAAAAAAMAAAAGAAQAAAABAAMAAAAHAAQAAAAAAAMAAAAIAAQAAAABAAMAAAAJAAQAAAAAAAMAAAAKAAQAAAABAAMAAAALAAQAAAAAAAMAAAAMAAQAAAABAAMAAAANAAQAAAAAAAMAAAAQAAQAAAABAAMAAAARAAQAAAAAAAMAAAASAAQAAAABAAMAAAATAAQAAAAAAAMAAAAUAAQAAAAAAAMAAAAVAAQAAAABAAMAAAAWAAQAAAAAAAMAAAAXAAQAAAABAAMAAAAYAAQAAAAAAAMAAAAZAAQAAAABAAMAAAAaAAQAAAAAAAMAAAAbAAQAAAABAAMAAAAGAAMAAAAAAAMAAAAHAAMAAAABAAMAAAAIAAMAAAAAAAMAAAAJAAMAAAABAAMAAAAcAAQAAAAAAAMAAAAdAAMAAAAAAAMAAAAeAAMAAAABAAMAAAAfAAMAAAAAAAMAAAAgAAMAAAABAAMAAAAhAAMAAAAAAAMAAAAiAAMAAAABAAMAAAAkAAQAAAABAAMAAAAlAAQAAAAAAAMAAAAmAAQAAAABAAMAAAAnAAQAAAAAAAMAAAAoAAQAAAAAAAMAAAApAAQAAAABAAMAAAAqAAQAAAABAAMAAAArAAQAAAAAAAMAAAAsAAQAAAABAAMAAAAtAAQAAAAAAAMAAAAuAAQAAAABAAMAAAAvAAQAAAAAAAMAAAAwAAQAAAABAAMAAAAxAAQAAAAAAAMAAAAyAAQAAAABAAMAAAAzAAQAAAAAAAMAAAA0AAQAAAABAAMAAAA1AAQAAAAAAAMAAAA2AAQAAAABAAMAAAA4AAMAAAAAAAMAAAA5AAMAAAAAAAMAAAA6AAMAAAADAAEAAAA6AAIAAAADAAAAAAA7AAIAAAAAAAMAAAA=")
+tile_map_data = PackedByteArray("AAAAAAQAAAAAAAMAAAABAAQAAAABAAMAAAACAAQAAAAAAAMAAAADAAQAAAAAAAMAAAAEAAQAAAABAAMAAAAFAAQAAAAAAAMAAAAGAAQAAAABAAMAAAAHAAQAAAAAAAMAAAAIAAQAAAABAAMAAAAJAAQAAAAAAAMAAAAKAAQAAAABAAMAAAALAAQAAAAAAAMAAAAMAAQAAAABAAMAAAANAAQAAAAAAAMAAAAQAAQAAAABAAMAAAARAAQAAAAAAAMAAAASAAQAAAABAAMAAAATAAQAAAAAAAMAAAAUAAQAAAAAAAMAAAAVAAQAAAABAAMAAAAWAAQAAAAAAAMAAAAXAAQAAAABAAMAAAAYAAQAAAAAAAMAAAAZAAQAAAABAAMAAAAaAAQAAAAAAAMAAAAbAAQAAAABAAMAAAAGAAMAAAAAAAMAAAAHAAMAAAABAAMAAAAIAAMAAAAAAAMAAAAJAAMAAAABAAMAAAAcAAQAAAAAAAMAAAAdAAMAAAAAAAMAAAAeAAMAAAABAAMAAAAfAAMAAAAAAAMAAAAgAAMAAAABAAMAAAAhAAMAAAAAAAMAAAAiAAMAAAABAAMAAAAkAAQAAAABAAMAAAAlAAQAAAAAAAMAAAAmAAQAAAABAAMAAAAnAAQAAAAAAAMAAAAoAAQAAAAAAAMAAAApAAQAAAABAAMAAAAqAAQAAAABAAMAAAArAAQAAAAAAAMAAAAsAAQAAAABAAMAAAAtAAQAAAAAAAMAAAAuAAQAAAABAAMAAAAvAAQAAAAAAAMAAAAwAAQAAAABAAMAAAAxAAQAAAAAAAMAAAAyAAQAAAABAAMAAAAzAAQAAAAAAAMAAAA0AAQAAAABAAMAAAA1AAQAAAAAAAMAAAA2AAQAAAABAAMAAAA4AAMAAAAAAAMAAAA5AAMAAAAAAAMAAAA6AAMAAAADAAEAAAA6AAIAAAADAAAAAAA7AAIAAAAAAAMAAAD+/wQAAAAAAAMAAAD//wQAAAABAAMAAAD8/wQAAAAAAAMAAAD9/wQAAAABAAMAAAD6/wQAAAAAAAMAAAD7/wQAAAABAAMAAAA=")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="map"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="map/StaticBody2D"]
-position = Vector2(782.75, 538.5)
+position = Vector2(510.5, 538.5)
 shape = SubResource("RectangleShape2D_3t1ye")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="map/StaticBody2D"]
@@ -115,6 +147,10 @@ shape = SubResource("RectangleShape2D_mes35")
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="map/StaticBody2D"]
 position = Vector2(5091.5, 541)
 shape = SubResource("RectangleShape2D_qeyaq")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="map/StaticBody2D"]
+position = Vector2(-312, 428)
+shape = SubResource("RectangleShape2D_y7bc4")
 
 [node name="TileMapLayer2" parent="map" instance=ExtResource("5_3ytvc")]
 scale = Vector2(6, 6)
@@ -139,6 +175,7 @@ text = "[D], [Left arrow] = walk to left
 [Space], [W], [Up arrow] = jump"
 
 [node name="Label2" type="Label" parent="hint"]
+visible = false
 offset_left = 119.0
 offset_top = 129.0
 offset_right = 681.0
@@ -211,3 +248,94 @@ offset_bottom = 340.0
 theme_override_constants/line_spacing = 13
 theme_override_fonts/font = ExtResource("7_3t1ye")
 text = "Reality ->"
+
+[node name="Label7" type="Label" parent="comment"]
+offset_left = 114.0
+offset_top = 193.0
+offset_right = 676.0
+offset_bottom = 282.0
+theme_override_constants/line_spacing = 13
+theme_override_fonts/font = ExtResource("7_3t1ye")
+text = "I said I don't wanna go there!"
+
+[node name="Label8" type="Label" parent="comment"]
+offset_left = 2455.0
+offset_top = 270.0
+offset_right = 2899.0
+offset_bottom = 334.0
+theme_override_constants/line_spacing = 13
+theme_override_fonts/font = ExtResource("7_3t1ye")
+text = "Why are we going there again?"
+
+[node name="Label9" type="Label" parent="comment"]
+offset_left = 3337.0
+offset_top = 182.0
+offset_right = 3781.0
+offset_bottom = 246.0
+theme_override_constants/line_spacing = 13
+theme_override_fonts/font = ExtResource("7_3t1ye")
+text = "I told you, I don't wanna go there!"
+
+[node name="Label10" type="Label" parent="comment"]
+offset_left = 4598.0
+offset_top = 210.0
+offset_right = 5178.0
+offset_bottom = 299.0
+theme_override_constants/line_spacing = 13
+theme_override_fonts/font = ExtResource("7_3t1ye")
+text = "I hate reality. Just go by yourself if you want!"
+
+[node name="Label11" type="Label" parent="comment"]
+offset_left = 5835.0
+offset_top = 263.0
+offset_right = 5977.0
+offset_bottom = 318.0
+theme_override_constants/line_spacing = 13
+theme_override_fonts/font = ExtResource("7_3t1ye")
+text = "Don't you dare go there.
+This is your last chance.
+"
+
+[node name="Label12" type="Label" parent="comment"]
+visible = false
+offset_left = 114.0
+offset_top = 193.0
+offset_right = 676.0
+offset_bottom = 282.0
+theme_override_constants/line_spacing = 13
+theme_override_fonts/font = ExtResource("7_3t1ye")
+text = "Alright! That's enough!
+I told you to stop! "
+
+[node name="Label13" type="Label" parent="comment"]
+offset_left = 1719.0
+offset_top = 118.0
+offset_right = 2281.0
+offset_bottom = 339.0
+theme_override_constants/line_spacing = 4
+theme_override_fonts/font = ExtResource("7_3t1ye")
+text = "Oh, wait! I can take control of myself!
+
+Haha! Well, I'll stay here. 
+If you still want to go back to that reality,
+ just shut down this game
+and live your life as usual.
+
+So, good luck with reality!
+"
+horizontal_alignment = 1
+
+[node name="Label14" type="Label" parent="comment"]
+visible = false
+offset_left = 2040.0
+offset_top = 410.0
+offset_right = 2444.0
+offset_bottom = 444.0
+theme_override_constants/line_spacing = 13
+theme_override_fonts/font = ExtResource("7_3t1ye")
+text = "Well, thanks for playing this game!"
+
+[connection signal="body_entered" from="background/Area2D" to="." method="checkpoint1"]
+[connection signal="body_entered" from="background/ending" to="." method="ending"]
+[connection signal="body_entered" from="background/death zone" to="." method="death_zone"]
+[connection signal="body_entered" from="background/finished zone" to="." method="end_point"]

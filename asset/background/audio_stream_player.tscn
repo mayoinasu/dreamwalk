@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dj14n3ylouh6j"]
+
+[ext_resource type="Script" uid="uid://v0pnr8bemr0y" path="res://asset/background/global_script.gd" id="1_2ynco"]
+[ext_resource type="AudioStream" uid="uid://dry5mvldymmwf" path="res://asset/audio/[no copyright music] 'Taiyaki' cute background music.mp3" id="1_olfo1"]
+
+[node name="AudioStreamPlayer" type="Node2D"]
+script = ExtResource("1_2ynco")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_olfo1")
+volume_db = -0.575
+autoplay = true
