@@ -170,8 +170,8 @@ offset_right = 466.0
 offset_bottom = 218.0
 theme_override_constants/line_spacing = 13
 theme_override_fonts/font = ExtResource("7_3t1ye")
-text = "[D], [Left arrow] = walk to left
-[A], [Right arrow] = walk to left
+text = "[A], [Left arrow] = walk to left
+[D], [Right arrow] = walk to right
 [Space], [W], [Up arrow] = jump"
 
 [node name="Label2" type="Label" parent="hint"]
